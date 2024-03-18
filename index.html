@@ -1,22 +1,115 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"> 
+    <meta charset="utf-8">
     <title>Empty HTML Document</title>
     <script type="module" src=".\index.js" defer></script>
     </script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+            padding-right: 10px;
+            max-width: 500px;
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        #textsection {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #resultsection {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .encryptbtn {
+            margin-right: 10px;
+        }
+
+        .decryptbtn {
+            margin-left: 10px;
+        }
+
+
+
+        .padItem {
+            margin-right: 30px;
+        }
+
+        #targetString {
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #resultString {
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #panel1 {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #panel2 {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #filepanel {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Decryption Example</h1>
-<h2>content: </h2>
-<div id="content">
-    
-</div>
-<button id="decryptbtn">DECRYPT</button>
-<h2>decryption key: </h2>
-<input id="keyfield" value="0"></input>
-<button id="setkeybtn">Set Key</button>
-<button id="resetkeybtn">Reset Key</button>
+    <div class="container">
+        <div id="content">
+            <div id="toptitle">
+                <h1>Decryption Example</h1>
+            </div><br><br><br>
+            <div id="textsection">
+                <span class="padItem">target: </span><br> <textarea rows="10" cols="30" id="targetString"
+                    value=""></textarea>
+            </div><br>
+            <div id="resultsection">
+                <span class="padItem">result: </span> <br><textarea rows="10" cols="30" id="resultString"
+                    value=""></textarea>
+            </div>
+
+        </div><br>
+        <div id="panel1">
+            <button id="encryptbtn" class="padItem" disabled="true">ENCRYPT</button>
+            <button id="decryptbtn" class="padItem" disabled="true">DECRYPT</button>
+        </div><br>
+        <div id="panel2">
+            <input id="keyfield" value="0" class="padItem"></input>
+            <button id="applykeybtn" class="padItem">Apply</button>
+        </div><br>
+        <div id="filepanel">
+            <input type="file" id="file-input" class="padItem"></input>
+            <button id="setkeybtn" disabled="true" class="padItem">Set Key</button>
+        </div>
+    </div>
 </body>
+
 </html>
