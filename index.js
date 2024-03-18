@@ -29,7 +29,7 @@ let alphabets;
 
 
 function applyKey(){
-  const input = targetString.value;
+  const input = keyfield.value;
   processKey(input);
 }
 

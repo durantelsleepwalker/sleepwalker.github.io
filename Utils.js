@@ -1044,8 +1044,6 @@ export class EasyCrypt {
         const stencil = this.numberToBits(number);
         const invertedBytes = new Uint8Array(bytes.length);
 
-        console.log(mode);
-
         for (let i = 0; i < bytes.length; i++) {
             invertedBytes[i] = 0;
             for (let j = 0; j < 8; j++) {
@@ -1063,7 +1061,6 @@ export class EasyCrypt {
         const stencil = this.numberToBits(number);
         const invertedBytes = new Uint8Array(bytes.length);
 
-        console.log(mode);
         for (let i = 0; i < bytes.length; i++) {
             invertedBytes[i] = 0;
             for (let j = 0; j < 8; j++) {
@@ -1176,12 +1173,8 @@ export class EasyCrypt {
         regexAlphabet.lastIndex = 0;
         alphabet = regexAlphabet.exec(denumber);
 
-        if (regexAlphabet.lastIndex === 0){
-            result = result.replace(/\.{1}/g, alphabet_prev);
-        }
-
         while ((tokens = regexToken.exec(denumber)) !== null) {
-            if (regexToken.lastIndex > regexAlphabet.lastIndex) {
+            if (regexToken.lastIndex > regexAlphabet.lastIndex && regexAlphabet.lastIndex !== 0) {
                 alphabet_prev = alphabet;
                 alphabet = regexAlphabet.exec(denumber);
             }
