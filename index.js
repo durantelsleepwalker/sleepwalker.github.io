@@ -30,11 +30,8 @@ let alphabets;
 
 function applyKey(){
   const input = keyfield.value;
-  processKey(input)
+  processKey(input);
 }
-
-
-
 
 
 function saveKeyFile(bigIntArray){
