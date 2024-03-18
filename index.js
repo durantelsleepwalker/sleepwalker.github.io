@@ -6,30 +6,22 @@ const Utils = new EasyCrypt();
 
 
 
-const keyfield = document.getElementById("keyfield");
-const decryptbtn = document.getElementById("decryptbtn");
-decryptbtn.onclick = decrypt;
-const encryptbtn = document.getElementById("encryptbtn");
-encryptbtn.onclick = encrypt;
-const setkeybtn = document.getElementById("setkeybtn");
-setkeybtn.onclick = setkey;
-const applykeybtn = document.getElementById("applykeybtn");
-applykeybtn.onclick = applyKey;
-const fileInput = document.getElementById('file-input');
-fileInput.addEventListener("change", onFileChange);
+document.getElementById("decryptbtn").onclick = decrypt;
 
-const targetString = document.getElementById('targetString');
-const resultString = document.getElementById('resultString');
+document.getElementById("encryptbtn").onclick = encrypt;
 
+document.getElementById("setkeybtn").onclick = setkey;
 
+document.getElementById("applykeybtn").onclick = applyKey;
+
+document.getElementById('file-input').addEventListener("change", onFileChange);
 
 let numbers;
 let alphabets;
 
 
-
 function applyKey(){
-  const input = keyfield.value;
+  const input = document.getElementById("keyfield").value;
   processKey(input);
 }
 
@@ -48,8 +40,8 @@ function saveKeyFile(bigIntArray){
 function loadKeyFile(event) {
   processKey(event.target.result);
   
-  encryptbtn.disabled = false;
-  decryptbtn.disabled = false;
+  document.getElementById("encryptbtn").disabled = false;
+  document.getElementById("decryptbtn").disabled = false;
 }
 
 function processKey(input){
@@ -60,8 +52,8 @@ function processKey(input){
   numbers = Utils.numberArrayFromKey(input);
   alphabets = Utils.alphabetArrayFromKey(input);
 
-  encryptbtn.disabled = false;
-  decryptbtn.disabled = false;
+  document.getElementById("encryptbtn").disabled = false;
+  document.getElementById("decryptbtn").disabled = false;
 }
 
 
@@ -71,7 +63,7 @@ function decrypt() {
 
 
 
-  const uint8Array = Utils.stringToUintArray(targetString.value);
+  const uint8Array = Utils.stringToUintArray(document.getElementById('targetString').value);
 
   let array;
   for (let i=0; i < alphabets.length; i++){
@@ -79,7 +71,7 @@ function decrypt() {
   }
 
   const invertedString = Utils.utf8Decode(array);
-  resultString.value = invertedString;
+  document.getElementById('resultString').value = invertedString;
 
 }
 
@@ -87,20 +79,20 @@ function encrypt() {
 
   if (!(numbers && alphabets)) return window.alert("no key is used");
 
-  const uint8Array = Utils.utf8Encode(targetString.value);
+  const uint8Array = Utils.utf8Encode(document.getElementById('targetString').value);
 
   let array;
   for (let i=0; i < alphabets.length; i++){
     array = Utils.encrypt(uint8Array,numbers[i],alphabets[i]);
   }
 
-  resultString.value = array;
+  document.getElementById('resultString').value = array;
   
 }
 
 
 function setkey() {
-  const file = fileInput.files[0];
+  const file = document.getElementById('file-input').files[0];
 
   if (!Utils.validateFile(file)) return window.alert("Not .txt or file too big!");
 
@@ -116,14 +108,14 @@ function onFileChange(event){
     const isValidFile = Utils.validateFile(selectedFile);
 
     if (isValidFile) {
-      setkeybtn.disabled = false;
+      document.getElementById("setkeybtn").disabled = false;
       // You can perform additional operations on the selected file if needed
     } else {
-      setkeybtn.disabled = true;
+      document.getElementById("setkeybtn").disabled = true;
       console.log('Invalid file type or size.');
     }
   } else {
-    setkeybtn.disabled = true;
+    document.getElementById("setkeybtn").disabled = true;
   }
 }
 
